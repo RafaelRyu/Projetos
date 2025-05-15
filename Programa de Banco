@@ -1,0 +1,69 @@
+package exercise1;
+
+import java.util.Scanner;
+
+public class Ex9 {
+	static Scanner sc = new Scanner(System.in);
+	public static void main(String[] args) {
+	
+	double saldo = 0;
+	boolean repeat = true;
+	int opcao;
+	
+	while (repeat == true) {
+	
+		System.out.println("    ****************\nPrograma Bancário Simples       \n    ****************");
+		System.out.println("1.Mostre o total na conta\n2.Faça um depósito\n3.Faça um saque\n4.Sair");
+		System.out.println("Escolha uma opção entre 1 e 4: ");
+		opcao = sc.nextInt();
+		
+	switch(opcao) {
+	
+	case 1 -> mostreTotal(saldo);
+	case 2 -> saldo += deposito();
+	case 3 -> saldo -= saque(saldo);
+	case 4 -> repeat = false;
+	default -> System.out.println("Opção Inválida");
+	}
+
+	}
+	System.out.println("Sessão Encerrada");
+		
+	}
+	
+	
+  static void mostreTotal(double total) {
+	  System.out.printf("Seu total é: R$%.2f\n", total);}
+
+  static double deposito() {
+	double valor;
+	System.out.printf("Digite o valor do seu depósito: R$");
+	valor = sc.nextDouble();
+	if (valor < 0) {
+		System.out.println("O valor é negativo, caso queira sacar dinheiro, digite 3 no Menu");
+		return 0;
+	} else if ( valor == 0) {
+		System.out.println("Seu valor é nulo, digite um valor válido");
+		return 0;
+	} else {
+		return valor;
+	}
+}
+	
+  static double saque(double saldo) {
+	  System.out.printf("Digite o valor do seu saque: R$");
+	  double valor = sc.nextDouble();
+	  
+	  if (valor > saldo) {
+		  System.out.println("Desculpe, seu valor é maior que seu saldo");
+		  return 0;
+	  } else if (valor < 0) {
+		  System.out.println("Seu saque não pode ser um valor negativo, caso queira depositar dinheiro, digite 2 no Menu");
+		  return 0;
+	  } else {
+		  return valor;
+	  }
+	  
+  }
+	
+}
