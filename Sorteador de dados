@@ -1,0 +1,92 @@
+package exercise1;
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class ex10 {
+	
+
+	public static void main(String[] args) {
+	
+	Scanner sc = new Scanner(System.in);
+	Random ran = new Random();
+	int total = 0;
+	
+	System.out.println("Digite o número de dados D7 que deseja rolar: ");
+	int numDados = sc.nextInt();	
+	
+	if (numDados>0) {
+	for (int i = 1; i<numDados+1; i++) {
+		int rolar = ran.nextInt(1,7);
+		dados(rolar);
+		System.out.println("Seu dado nº"+i+" deu: " + rolar);
+		total += rolar;
+	}
+	System.out.println("A soma dos dados é: " + total);
+	} else {
+		System.out.println("O número de dados deve ser maior que zero");
+	}
+	sc.close();
+	
+	}
+	
+	static void dados(int rolar) {
+		
+		String dice1 = """
+--------
+|      |
+|  ●   |
+|      |
+--------
+				""";
+		
+		String dice2 = """
+--------
+| ●    |
+|      |
+|    ● |
+--------
+				""";
+		
+		String dice3 = """
+--------
+|●     |
+|  ●   |
+|    ● |
+--------
+				""";
+		
+		String dice4 = """
+--------
+|●   ● |
+|      |
+|●   ● |
+--------
+				""";
+		
+		String dice5 = """
+--------
+|●   ● |
+|  ●   |
+|●   ● |
+--------
+				""";
+		
+		String dice6 = """
+--------
+|●   ● |
+|●   ● |
+|●   ● |
+--------
+				""";
+		
+		switch (rolar) {
+		case 1 -> System.out.print(dice1);
+		case 2 -> System.out.print(dice2);
+		case 3 -> System.out.print(dice3);
+		case 4 -> System.out.print(dice4);
+		case 5 -> System.out.print(dice5);
+		case 6 -> System.out.print(dice6);
+		}
+	}
+}
