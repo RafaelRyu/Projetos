@@ -1,0 +1,102 @@
+package exercise1;
+
+import java.util.Scanner;
+
+public class ex2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		 Scanner sc = new Scanner(System.in);
+		 String opcao = "";
+		 
+		 System.out.println("================================================");
+		 System.out.println("Você deseja usar o programa genético (YES/NO) ?");
+		 opcao = sc.nextLine();		 
+		 
+		 while( !opcao.equalsIgnoreCase("YES") && !opcao.equalsIgnoreCase("NO")) {
+			 System.out.println("Voçê digitou uma opção inválida, tente uma das opções no enunciado!");
+		 System.out.println("================================================");
+		 System.out.println("Você deseja usar o programa genético (YES/NO) ?");
+		 opcao = sc.nextLine();		 
+		 }
+		
+		 while( opcao.equalsIgnoreCase("YES")) {
+		 System.out.println("Fale o código genético do pai 1: ");
+		 String pai1 = sc.nextLine();
+		 System.out.println("Fale o código genético do pai 2: ");
+		 String pai2 = sc.nextLine();
+		 
+		 if (pai1.length()<8 || pai1.length()>8 || pai2.length()<8 || pai2.length()>8) {
+			 System.out.println("Desculpe, mas pelo menos um de seus códigos genéticos foi inserido incorretamente, verifique os códigos genéticos e tente novamente");
+		 } else {
+			 
+		 // Determinar o ponto de corte
+		 int pontoCorte = (int) ((Math.random()*7)+1);
+		 
+		 
+		 // Separar os códigos genéticos
+		 String cod11 = pai1.substring(0, pontoCorte);
+		 String cod12 = pai1.substring(pontoCorte, pai1.length());
+		 String cod21 = pai2.substring(0, pontoCorte);
+		 String cod22 = pai2.substring(pontoCorte, pai2.length());
+		 
+		 
+		 //recombinar
+		 String filho1 = cod11+cod22;
+		 String filho2 = cod12+cod21;
+		 
+		 
+		 
+		 //mutação
+		 String bases = "ATCG";
+		int num =(int) (Math.random()*4);
+		char mutacao1 = bases.charAt(num);
+		int mutacaoLugar1 = (int) (Math.random()*8);
+		String filhoMutado1 = "";
+		for (int i = 0; i < 8; i++) {
+			if (i != mutacaoLugar1) {
+			   filhoMutado1 += ""+filho1.charAt(i);
+			} else {
+				filhoMutado1 += bases.charAt(num);
+			}
+		}
+		
+		int num2 = (int) (Math.random()*4);
+		char mutacao2 = bases.charAt(num2);
+		int mutacaoLugar2 = (int) (Math.random()*8);
+		String filhoMutado2 = "";
+		for (int i = 0; i < 8; i++) {
+			if (i != mutacaoLugar2) {
+			   filhoMutado2 += ""+filho2.charAt(i);
+			} else {
+				filhoMutado2 += bases.charAt(num2);
+			}
+		}
+		 
+		 // Saída dos dados
+		System.out.println("O filho da primeira recombinação possui o seguinte código genético: "+filho1.toUpperCase());
+		System.out.println("O filho da segunda recombinação possui o seguinte código genético: "+filho2.toUpperCase());
+		
+		System.out.println("O primeiro filho possui o seguinte código mutado: "+filhoMutado1.toUpperCase());
+		System.out.println("O segundo filho possui o seguinte código mutado: "+filhoMutado2.toUpperCase());
+		
+		
+		 }	
+		 System.out.println("================================================");
+		System.out.println("Você gostaria de continuar usando o programa (YES/NO) ?: ");
+		opcao = sc.nextLine();
+		
+		while( !opcao.equalsIgnoreCase("YES") && !opcao.equalsIgnoreCase("NO")) {
+			 System.out.println("Voçê digitou uma opção inválida, tente uma das opções no enunciado!");
+		 System.out.println("================================================");
+		 System.out.println("Você deseja usar o programa genético (YES/NO) ?");
+		 opcao = sc.nextLine();		 
+		 }
+	}
+		 System.out.println("================================================");
+		 System.out.println("Você saiu do programa, volte sempre !!!");
+		 
+	}
+	
+}
