@@ -1,0 +1,69 @@
+package exercise1;
+
+import java.util.Scanner;
+
+public class ex5 {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		String[] perguntas = {
+		"Qual povo criou a escrita cuneiforme ?",
+		"Quem escreveu a obra Vidas Secas ?",
+		"Quem descobriu o elemento Rádio ?",
+		"Quem foi o pioneiro no estudo do empuxo na Grécia Antiga ?"
+		};
+		
+		String[][] alternativas = { {"1: Sumérios", "2: Hititas", "3: Babilônios", "4: Caldeus"},
+		{"1: Guimarães Rosa", "2: Oswald de Andrade", "3: Graciliano Ramos", "4: Clarice Linspector"},
+		{"1: Thomas Edison","2: Marie Curie","3: Niels Bohr","4: Johannes Kepler" },
+		{"1: Galileu","2: Aristóteles","3: Pitágoras","4: Arquimedes"}
+		};
+		
+		int[] respostas = {1,3,2,4};
+		int pontos = 0;
+		int escolha;
+		                
+		System.out.println("---------Quiz de Perguntas Gerais---------");
+		for (int i = 0; i < perguntas.length; i++) {
+		System.out.println(perguntas[i]);
+		
+		for (String opcao : alternativas[i]) {
+			System.out.println(opcao);
+		}
+		System.out.println();
+		System.out.println("Digite o número da alternativa escolhida: ");
+		escolha = sc.nextInt();
+		
+		while ( escolha < 1 || escolha > alternativas[i].length) {
+			System.out.println("Opção inválida, tente um número presente nas alternativas: ");
+			escolha = sc.nextInt();
+		}
+			
+		if (escolha == respostas[i]) {
+			pontos += 1;
+		} else {
+			pontos += 0;
+		}
+		};
+
+		System.out.println("Seu número de acertos foi " + pontos);
+		System.out.println();
+		if (pontos == 4) {
+			System.out.println("EXCELENTE!!!");
+			System.out.println();
+		} else if (pontos == 3) {
+			System.out.println("Bom");
+		} else {
+			System.out.println("Poderia ser melhor");
+		}
+		System.out.println("As respostas corretas eram: \n1: Sumérios \n3: Graciliano Ramos \n 2: Marie Curie \n4: Arquimedes");
+		
+		
+		
+}
+	
+	
+	
+
+}
