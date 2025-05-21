@@ -46,6 +46,7 @@ public class ex5 {
 			pontos += 0;
 		}
 		};
+                sc.close();
 
 		System.out.println("Seu número de acertos foi " + pontos);
 		System.out.println();
