@@ -1,0 +1,101 @@
+package exercise1;
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class ex6 {
+
+	public static void main(String[] args) {
+		
+		
+		Scanner sc = new Scanner(System.in);
+		Random random = new Random();
+		
+		
+		String escolha;
+		String computador;
+		String[] opcoes = {"pedra", "papel", "tesoura"};
+		int jogos;
+		String outraPartida;
+		boolean repetir = true;
+		
+		while (repetir == true) {
+			int jogadorPontos = 0; 
+			int computadorPontos = 0;
+			
+		System.out.println("-----Jogo de Pedra, Papel, Tesoura-----");
+		System.out.println("Insira quantas partidas deseja jogar: ");
+		jogos = sc.nextInt();
+		
+		
+		while (jogos <= 0) {
+			System.out.println("Sua opção é inválida, por favor tente um número maior que zero: ");
+			jogos = sc.nextInt();
+			
+		}
+		sc.nextLine();
+		
+		for (int i = 0; i < jogos; i++) {
+			
+			
+		
+		System.out.println("***Menu***");
+		System.out.println("-pedra\n-papel\n-tesoura");
+		System.out.println("Escolha seu movimento: ");
+		System.out.println("");
+		escolha = sc.nextLine().toLowerCase().trim();
+		
+		while (!escolha.equals("pedra") && !escolha.equals("papel") && !escolha.equals("tesoura")) {
+			System.out.println("Essa ação é inválida, por favor tente um movimento do menu: ");
+			escolha = sc.nextLine().toLowerCase().trim();
+		}
+	
+		 
+		
+		computador = opcoes[random.nextInt(3)];
+		System.out.println(computador);
+		
+		if (computador.equals(escolha)) {
+			System.out.println("Houve um empate !");
+		} else if ((computador.equals("pedra") && escolha.equals("papel")) ||
+				   (computador.equals("papel") && escolha.equals("tesoura")) ||
+				   (computador.equals("tesoura") && escolha.equals("pedra"))
+					) { 
+						System.out.println("Você ganhou !");
+						jogadorPontos += 1;
+						} else {
+							System.out.println("Você perdeu !");
+							computadorPontos += 1;
+						}
+		 }
+		
+		if (jogadorPontos == computadorPontos) {
+			System.out.println("O jogo terminou em um empate !");
+		} else if (jogadorPontos > computadorPontos) {
+			System.out.println("Você ganhou o  jogo de "+jogadorPontos+" a "+computadorPontos+" !");
+		} else {
+			System.out.println("O computador ganhou a partida por "+computadorPontos+" a "+jogadorPontos+", tente novamente");
+		}
+		
+		System.out.println("Deseja iniciar uma nova partida ? (S/N): ");
+		outraPartida = sc.nextLine().toUpperCase();
+		
+		while ( !outraPartida.equals("S") && !outraPartida.equals("N"))  {
+			System.out.println("Essa opção é inválida, tente 'S' para sim ou 'N' para não");
+			outraPartida = sc.nextLine().toUpperCase();
+		}
+		
+		
+		if (outraPartida.equals("S")) {
+				repetir = true;
+			} else {
+				repetir = false;
+			}
+		}
+		sc.close();
+		
+		System.out.println("Você encerrou o jogo, volte sempre !  :)");
+		}
+	}
+
+
