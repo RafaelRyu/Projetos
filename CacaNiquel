@@ -1,0 +1,121 @@
+package exercise1;
+
+import java.util.Scanner;
+import java.util.Random;
+public class ex1 {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		Random ran = new Random();
+		
+		int credito;
+		int aposta;
+		String jogar_novamente = "S";
+		
+		System.out.println("**********Jogo de Caça Níquel***********");
+		System.out.println("Insira seu crédito em Reais(R$) para jogar: ");
+		credito = sc.nextInt();
+		
+		while (jogar_novamente.equals("S")) {
+			
+			while (credito <= 0 ) {
+				System.out.println("Seu crédito não pode ser um valor negativo, por favor insira um montante maior que zero: ");
+				credito = sc.nextInt();			
+				}
+			
+			System.out.println("Insira o valor de sua aposta: ");
+		    aposta = sc.nextInt();
+		    sc.nextLine();
+		    while (aposta <= 0 || aposta>credito) {
+		    	
+		    	System.out.println("Valor inválido, tente um valor maior que zero e dentro do seu limite de crédito: ");
+		    	aposta = sc.nextInt();
+		    	
+			    sc.nextLine();
+		    }
+		    	credito -= aposta;
+		    	System.out.println("Seu crédito restante é: "+credito);
+		    	
+		    	String[] resultado = rodar(ran);
+		    	mostrarResultado(resultado);
+		    	int pagamento = Pagamento(resultado, aposta);
+		    	
+		    	if (pagamento>0) {
+		    		System.out.println("Seu pagamento foi de R$"+pagamento );
+		    		credito += pagamento;
+
+		    		System.out.println("Seu credito é: "+credito);
+		    	} else {
+		    		System.out.println("Você perdeu essa partida :(");
+		    		
+		    	}
+		        
+		    	
+		    	
+		    
+		    System.out.println("Deseja jogar novamente (S:Sim / N:Não) ?");
+		    jogar_novamente = sc.nextLine().toUpperCase();
+		    while (!jogar_novamente.equals("S") && !jogar_novamente.equals("N")) {
+		    System.out.println("Opção inválida, tente S para Sim ou N para Não");	
+		    jogar_novamente = sc.nextLine().toUpperCase();
+		    }
+	    	
+		}
+		System.out.println("Você saiu do jogo com R$"+credito+", volte sempre !");
+	// fim do código principal
+	}
+	public static String[] rodar(Random ran) {
+		String[] itens = {"🍉","🍊","🍎","🍒","🌶️","🍄‍"};
+		String[] resultado = new String[3];
+		for (int i = 0; i < resultado.length; i++) {
+		 resultado[i] = itens[ran.nextInt(6)];
+		}
+		return resultado;
+		
+	}
+	
+	public static void mostrarResultado(String[] resultado) {
+		System.out.println("--------------");
+		System.out.println(" " + String.join(" | ", resultado));
+		System.out.println("--------------");
+	}
+	
+	public static int Pagamento(String[] resultado, int aposta) {
+		if (resultado[0].equals(resultado[1]) && resultado[1].equals(resultado[2])) {
+			
+			return switch (resultado[0]) {
+			case "🍉"-> aposta*10;
+			case "🍊"-> aposta*15;
+			case "🍎" -> aposta*20;
+			case "🍒"-> aposta*25;
+			case "🌶️"-> aposta*30;
+			case "🍄‍"-> aposta*35;
+			default -> 0;
+			};
+			
+		} else if (resultado[0].equals(resultado[1]) || resultado[1].equals(resultado[2])) {
+			return switch (resultado[1]) {
+			case "🍉"-> aposta*2;
+			case "🍊"-> aposta*3;
+			case "🍎" -> aposta*4;
+			case "🍒"-> aposta*5;
+			case "🌶️"-> aposta*6;
+			case "🍄‍"-> aposta*9;
+			default -> 0;
+			};
+
+		} else if (resultado[0].equals(resultado[2])) {
+			return switch (resultado[0]) {
+			case "🍉"-> aposta*2;
+			case "🍊"-> aposta*3;
+			case "🍎" -> aposta*4;
+			case "🍒"-> aposta*5;
+			case "🌶️"-> aposta*6;
+			case "🍄‍"-> aposta*9;
+			default -> 0;
+		};
+					
+	}
+		return 0;
+}
+}
